@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+            <LinearLayout
+                android:baselineAligned="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="start"
+                    android:gravity="center|start"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="18dp"
+                        android:paddingTop="18dp"
+                    android:src="@drawable/backarrow"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="end"
+                    android:gravity="center|end"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_margin="10dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20sp"
+                        android:src="@drawable/heart"
+                        />
+                    <ImageView
+                        android:layout_margin="10dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/cart"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/add_to_cart"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+        <LinearLayout
+            android:id="@+id/layoutDots"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+        </LinearLayout>
+    </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="clip_vertical"
+                android:fontFamily="@font/maven_pro"
+                android:gravity="start"
+                android:paddingLeft="18sp"
+                android:paddingTop="12sp"
+                android:text="SELHCARE"
+                android:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="clip_vertical"
+                android:fontFamily="@font/maven_pro"
+                android:gravity="start"
+                android:paddingLeft="18sp"
+                android:paddingTop="12sp"
+                android:text="Todays Forecast"
+                android:textColor="@color/colorPrimary"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="clip_vertical"
+                android:gravity="start"
+                android:fontFamily="@font/maven_pro"
+                android:paddingLeft="18sp"
+                android:paddingTop="12sp"
+                android:text="$ 29"
+                android:textColor="@color/colorPrimary"
+                android:textSize="17sp" />
+            <LinearLayout
+                android:padding="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/circle1" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/circle2" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/circle3" />
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="28dp"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@android:color/darker_gray"/>
+            <LinearLayout
+                android:baselineAligned="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="start"
+                    android:gravity="center|start"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="clip_vertical"
+                        android:fontFamily="@font/maven_pro"
+                        android:gravity="start"
+                        android:paddingLeft="18sp"
+                        android:paddingTop="12sp"
+                        android:text="DESCRIPTION"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="end"
+                    android:gravity="center|end"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/plus1"
+                        android:layout_width="20dp"
+                        android:layout_height="20sp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/plus" />
+
+                    <ImageView
+                        android:id="@+id/minus1"
+                        android:layout_width="20dp"
+                        android:layout_height="20sp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/minus" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/description1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="clip_vertical"
+                android:layout_marginRight="20dp"
+                android:fontFamily="maven_pro"
+                android:gravity="start"
+                android:lineSpacingExtra="8dp"
+                android:paddingLeft="18sp"
+                android:paddingTop="12sp"
+                android:text="These example sentences are selected automatically from various online news sources to reflect current usage of the word 'perfuse.' Views expressed in the examples do not represent the opinion of Merriam-Webster or its editors. Send us feedback."
+                android:textColor="@color/colorPrimary"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@android:color/darker_gray"/>
+            <LinearLayout
+                android:baselineAligned="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="start"
+                    android:gravity="center|start"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="clip_vertical"
+                        android:fontFamily="@font/maven_pro"
+                        android:gravity="start"
+                        android:paddingLeft="18sp"
+                        android:paddingTop="12sp"
+                        android:text="DESCRIPTION"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="end"
+                    android:gravity="center|end"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/plus2"
+                        android:layout_width="20dp"
+                        android:layout_height="20sp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/plus" />
+
+                    <ImageView
+                        android:id="@+id/minus2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/minus" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/description2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="clip_vertical"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/maven_pro"
+                android:gravity="start"
+                android:lineSpacingExtra="8dp"
+                android:paddingLeft="18sp"
+                android:paddingTop="12sp"
+                android:text="These example sentences are selected automatically from various online news sources to reflect current usage of the word 'perfuse.' Views expressed in the examples do not represent the opinion of Merriam-Webster or its editors. Send us feedback."
+                android:textColor="@color/colorPrimary"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@android:color/darker_gray"/>
+            <LinearLayout
+                android:baselineAligned="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="start"
+                    android:gravity="center|start"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="clip_vertical"
+                        android:fontFamily="@font/maven_pro"
+                        android:gravity="start"
+                        android:paddingLeft="18sp"
+                        android:paddingTop="12sp"
+                        android:text="DESCRIPTION"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="end"
+                    android:gravity="center|end"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/plus3"
+                        android:layout_width="20dp"
+                        android:layout_height="20sp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/plus" />
+
+                    <ImageView
+                        android:id="@+id/minus3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/minus" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/description3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="clip_vertical"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/maven_pro"
+                android:gravity="start"
+                android:lineSpacingExtra="8dp"
+                android:paddingLeft="18sp"
+                android:paddingTop="12sp"
+                android:text="These example sentences are selected automatically from various online news sources to reflect current usage of the word 'perfuse.' Views expressed in the examples do not represent the opinion of Merriam-Webster or its editors. Send us feedback."
+                android:textColor="@color/colorPrimary"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+    <LinearLayout
+        android:id="@+id/add_to_cart"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#4B72F4"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2.2"
+            android:layout_gravity="start"
+            android:gravity="right"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/maven_pro"
+                android:text="ADD TO CARD"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="end"
+            android:gravity="center|end"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_margin="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/addtocart"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</android.widget.RelativeLayout>
