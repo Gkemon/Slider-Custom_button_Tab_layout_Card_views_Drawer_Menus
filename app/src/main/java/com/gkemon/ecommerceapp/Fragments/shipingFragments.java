@@ -17,7 +17,7 @@ import com.gkemon.ecommerceapp.Listener.RecyclerItemClickListener;
 import com.gkemon.ecommerceapp.R;
 
 
-public class WatchFragments extends Fragment implements RecyclerItemClickListener {
+public class shipingFragments extends Fragment implements RecyclerItemClickListener {
     private View rootView;
     public  RecyclerView recyclerViewForClass;
     public FloatingActionButton btnAdd;
@@ -26,7 +26,7 @@ public class WatchFragments extends Fragment implements RecyclerItemClickListene
     public GridLayoutManager gridLayoutManager;
 
 
-    public WatchFragments() {
+    public shipingFragments() {
         // Required empty public constructor
     }
 
@@ -43,7 +43,8 @@ public class WatchFragments extends Fragment implements RecyclerItemClickListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView =inflater.inflate(R.layout.fragment_layout, container, false);
+        rootView =inflater.inflate(R.layout.shiping_fragment_payment, container, false);
+
         //VIEWS
         recyclerViewForClass = (RecyclerView) rootView.findViewById(R.id.recycleViewForItems);
 
@@ -53,9 +54,10 @@ public class WatchFragments extends Fragment implements RecyclerItemClickListene
 
         itemAdapter = new ItemsAdapter(context);
         itemAdapter.setOnItemClickListener(this);
-        //SET ADAPTER
-        itemAdapter.addAll(MainActivity.itemsArrayList);
-        recyclerViewForClass.setAdapter(itemAdapter);
+                    //SET ADAPTER
+                    itemAdapter.addAll(MainActivity.itemsArrayList);
+                    recyclerViewForClass.setAdapter(itemAdapter);
+
         return rootView;
     }
 
