@@ -146,6 +146,7 @@ public class OverViewActivity extends AppCompatActivity {
             public void onClick(View view) {
                 pluse1.setVisibility(View.VISIBLE);
                 minus1.setVisibility(View.GONE);
+               // description1.startAnimation(alphaAnimation);
                 description1.setVisibility(View.GONE);
                 pluse1.startAnimation(alphaAnimation);
             }
@@ -155,6 +156,7 @@ public class OverViewActivity extends AppCompatActivity {
             public void onClick(View view) {
                 pluse2.setVisibility(View.VISIBLE);
                 minus2.setVisibility(View.GONE);
+              //  description2.startAnimation(alphaAnimation);
                 description2.setVisibility(View.GONE);
                 pluse2.startAnimation(alphaAnimation);
             }
@@ -164,6 +166,7 @@ public class OverViewActivity extends AppCompatActivity {
             public void onClick(View view) {
                 pluse3.setVisibility(View.VISIBLE);
                 minus3.setVisibility(View.GONE);
+               // description3.startAnimation(alphaAnimation);
                 description3.setVisibility(View.GONE);
                 pluse3.startAnimation(alphaAnimation);
             }

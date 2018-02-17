@@ -10,10 +10,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gkemon.ecommerceapp.Fragments.WatchFragments;
+import com.gkemon.ecommerceapp.Fragments.payment;
 import com.gkemon.ecommerceapp.Fragments.shipingFragments;
 import com.gkemon.ecommerceapp.Model.Items;
 import com.gkemon.ecommerceapp.R;
@@ -38,43 +41,55 @@ public class paymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-        //Tabs
-        viewPager = (ViewPager) findViewById(R.id.viewpagerInPayment);
-        tabLayout = (TabLayout) findViewById(R.id.tabsInPayment);
-        tabLayout.setupWithViewPager(viewPager);
-        linearLayout=(LinearLayout)findViewById(R.id.LinearLayoutInShipping);
-        setupViewPager(viewPager);
-        textView1=(TextView)findViewById(R.id.t1);
-        textView2=(TextView)findViewById(R.id.t2);
-        textView3=(TextView)findViewById(R.id.t3);
-        textView4=(TextView)findViewById(R.id.t5);
-        textView5=(TextView)findViewById(R.id.t6);
-        textView6=(TextView)findViewById(R.id.t7);
-        textView7=(TextView)findViewById(R.id.t8);
-        context=this;
-        //For using custom front
+//        textView1=(TextView) findViewById(R.id.t1);
+//        textView2=(TextView) findViewById(R.id.t2);
+//        textView3=(TextView) findViewById(R.id.t3);
+//        textView4=(TextView) findViewById(R.id.t5);
+//        textView5=(TextView) findViewById(R.id.t6);
+//        textView6=(TextView) findViewById(R.id.t7);
+        //textView7=(TextView) findViewById(R.id.t8);
+
         AssetManager am = this.getApplicationContext().getAssets();
 
         typeface = Typeface.createFromAsset(am,
                 String.format(Locale.US, "fonts/%s", "MavenPro-Regular.ttf"));
+//
+//        textView1.setTypeface(typeface);
+//        textView2.setTypeface(typeface);
+//        textView3.setTypeface(typeface);
+//        textView4.setTypeface(typeface);
+//        textView5.setTypeface(typeface);
+//        textView6.setTypeface(typeface);
+//        textView7.setTypeface(typeface);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        //Tabs
+        viewPager = (ViewPager) findViewById(R.id.viewpagerInPayment);
+        tabLayout = (TabLayout) findViewById(R.id.tabsInPayment);
+        tabLayout.setupWithViewPager(viewPager);
 
-        textView1.setTypeface(typeface);
-        textView2.setTypeface(typeface);
-        textView3.setTypeface(typeface);
-        textView4.setTypeface(typeface);
-        textView5.setTypeface(typeface);
-        textView6.setTypeface(typeface);
-        textView7.setTypeface(typeface);
+        setupViewPager(viewPager);
 
+        context=this;
+        //For using custom front
 
 
 
     }
     public void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapterInPayment adapter = new ViewPagerAdapterInPayment(getSupportFragmentManager());
+
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            //noinspection ConstantConditions
+            TextView tv=(TextView) LayoutInflater.from(this).inflate(R.layout.tab_text,null);
+            tv.setTypeface(typeface);
+            tabLayout.getTabAt(i).setCustomView(tv);
+        }
         adapter.addFrag(new shipingFragments(), "SHIPPING");
-        adapter.addFrag(new WatchFragments(), "পারফিউম");
-        adapter.addFrag(new WatchFragments(), "সকল পণ্য");
+        adapter.addFrag(new payment(), "PAYMENT");
+        adapter.addFrag(new WatchFragments(), "CONFIRMATION");
+
+
+
         viewPager.setAdapter(adapter);
     }
 }
@@ -96,6 +111,7 @@ class ViewPagerAdapterInPayment extends FragmentPagerAdapter {
     }
 
     public void addFrag(Fragment fragment, String title) {
+
         mFragmentList.add(fragment);
         mFragmentTitleList.add(title);
     }

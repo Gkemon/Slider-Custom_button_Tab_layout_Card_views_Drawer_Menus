@@ -26,7 +26,7 @@ public class MavenText extends AppCompatTextView {
 
     private void init() {
         Typeface tf = Typeface.createFromAsset(getContext().getAssets(), String.format(Locale.US, "fonts/%s", "MavenPro-Regular.ttf"));
-        setTypeface(tf ,1);
+        setTypeface(tf);
 
     }
 }
