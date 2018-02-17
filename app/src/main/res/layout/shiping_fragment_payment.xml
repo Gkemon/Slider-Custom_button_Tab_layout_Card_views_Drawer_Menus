@@ -8,12 +8,13 @@
     android:background="@android:color/white"
     tools:context="com.gkemon.ecommerceapp.Activity.paymentActivity">
     <android.support.v4.widget.NestedScrollView
+        android:layout_above="@+id/continue_order"
+        android:id="@+id/scrollView"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_above="@+id/continue_order"
-        android:id="@+id/scrollView"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:background="@android:color/white"
+        tools:context="com.gkemon.ecommerceapp.Activity.paymentActivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 <LinearLayout
@@ -289,7 +290,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:text="DELEVERY"
         android:textSize="12sp"
         android:textColor="@color/colorPrimary"/>
@@ -297,21 +298,13 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/deliveryRecycler"
         android:layout_width="match_parent"
-        android:nestedScrollingEnabled="false"
-        app:layoutManager="LinearLayoutManager"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:background="@android:color/holo_red_dark"
-        android:layout_height="match_parent" />
-    <TextView
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:text="DELEVERY"
-        android:textSize="12sp"
-        android:textColor="@color/colorPrimary"/>
-
+        android:layout_marginBottom="30dp"
+        android:background="@android:color/white" />
 </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+
+
     <LinearLayout
         android:id="@+id/continue_order"
         android:layout_width="match_parent"
@@ -344,8 +337,8 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:layout_margin="10dp"
                 android:src="@drawable/next" />
         </LinearLayout>

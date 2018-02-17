@@ -15,8 +15,8 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.gkemon.ecommerceapp.Fragments.WatchFragments;
-import com.gkemon.ecommerceapp.Fragments.payment;
+import com.gkemon.ecommerceapp.Fragments.ConfirmFragment;
+import com.gkemon.ecommerceapp.Fragments.PaymentFragment;
 import com.gkemon.ecommerceapp.Fragments.shipingFragments;
 import com.gkemon.ecommerceapp.Model.Items;
 import com.gkemon.ecommerceapp.R;
@@ -85,8 +85,8 @@ public class paymentActivity extends AppCompatActivity {
             tabLayout.getTabAt(i).setCustomView(tv);
         }
         adapter.addFrag(new shipingFragments(), "SHIPPING");
-        adapter.addFrag(new payment(), "PAYMENT");
-        adapter.addFrag(new WatchFragments(), "CONFIRMATION");
+        adapter.addFrag(new PaymentFragment(), "PAYMENT");
+        adapter.addFrag(new ConfirmFragment(), "CONFIRMATION");
 
 
 

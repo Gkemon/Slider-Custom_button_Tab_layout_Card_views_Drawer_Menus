@@ -13,13 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.gkemon.ecommerceapp.Activity.MainActivity;
 import com.gkemon.ecommerceapp.Adapers.DeliveryAdapter;
 import com.gkemon.ecommerceapp.Adapers.ItemsAdapter;
-import com.gkemon.ecommerceapp.HelperClasses.MavenText;
 import com.gkemon.ecommerceapp.Listener.RecyclerItemClickListener;
 import com.gkemon.ecommerceapp.Model.DeliveryItems;
 import com.gkemon.ecommerceapp.R;
@@ -37,7 +34,7 @@ public class shipingFragments extends Fragment implements RecyclerItemClickListe
     private Context context;
     public Typeface typeface;
     public ItemsAdapter itemAdapter;
-    public LinearLayoutManager LinearLayoutManager;
+    public LinearLayoutManager linearLayoutManager;
     TextView textView1, textView2, textView3, textView4, textView5, textView6, textView7;
     public static ArrayList<String> price;
     public static ArrayList<String> method;
@@ -112,15 +109,17 @@ public class shipingFragments extends Fragment implements RecyclerItemClickListe
        // VIEWS
         recyclerViewForDelivery = (RecyclerView) rootView.findViewById(R.id.deliveryRecycler);
 
-        LinearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager = new LinearLayoutManager(getActivity());
 
-        LinearLayoutManager.setOrientation(0);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         DeliveryAdapter itemsAdapter = new DeliveryAdapter(listitems);
         recyclerViewForDelivery.setHasFixedSize(true);
 
-        itemsAdapter.setOnItemClickListener(this);
-        recyclerViewForDelivery.setAdapter(itemAdapter);
-        recyclerViewForDelivery.setLayoutManager(LinearLayoutManager);
+       // itemsAdapter.setOnItemClickListener(this);
+        recyclerViewForDelivery.setAdapter(itemsAdapter);
+        recyclerViewForDelivery.setLayoutManager(linearLayoutManager);
+
+
 
 
         return rootView;
