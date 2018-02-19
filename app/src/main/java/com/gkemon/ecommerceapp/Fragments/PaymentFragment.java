@@ -4,31 +4,42 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.gkemon.ecommerceapp.Adapers.DeliveryAdapter;
+import com.gkemon.ecommerceapp.Adapers.PaymentAdapter;
+import com.gkemon.ecommerceapp.Model.DeliveryItems;
+import com.gkemon.ecommerceapp.Model.PaymentItems;
 import com.gkemon.ecommerceapp.R;
+
+import java.util.ArrayList;
 
 import static com.gkemon.ecommerceapp.Fragments.shipingFragments.listitems;
 
 public class PaymentFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     public RecyclerView recyclerViewForClass;
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+    public static ArrayList<PaymentItems> PaymentItemLists = new ArrayList<>();
     private View rootView;
     public LinearLayoutManager linearLayoutManager;
 
+    public static ArrayList<String> methodOfPayment;
+    public int imageResourceOfPayment[]={R.drawable.paypal,R.drawable.visa,R.drawable.netbanking,R.drawable.payu};
 
 
     public PaymentFragment() {
         // Required empty public constructor
+
+        methodOfPayment=new ArrayList<>();
+
+        methodOfPayment.add("PAYPAL");
+        methodOfPayment.add("DEBIT CARD");
+        methodOfPayment.add("NETBANK");
+        methodOfPayment.add("PAY U MONEY");
+        initializeList();
     }
 
 
@@ -48,7 +59,7 @@ public class PaymentFragment extends Fragment {
         recyclerViewForClass=rootView.findViewById(R.id.deliveryRecycler1);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        DeliveryAdapter itemsAdapter = new DeliveryAdapter(listitems);
+        PaymentAdapter itemsAdapter = new PaymentAdapter(PaymentItemLists);
         recyclerViewForClass.setHasFixedSize(true);
         recyclerViewForClass.setAdapter(itemsAdapter);
         recyclerViewForClass.setLayoutManager(linearLayoutManager);
@@ -56,6 +67,15 @@ public class PaymentFragment extends Fragment {
 
 
         return rootView;
+    }
+
+    public void initializeList() {
+        listitems.clear();
+        for(int i =0;i<4;i++){
+            PaymentItems item = new PaymentItems(imageResourceOfPayment[i],methodOfPayment.get(i));
+            PaymentItemLists.add(item);
+        }
+
     }
 
 

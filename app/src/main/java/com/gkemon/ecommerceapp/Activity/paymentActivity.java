@@ -89,8 +89,13 @@ public class paymentActivity extends AppCompatActivity {
         adapter.addFrag(new ConfirmFragment(), "CONFIRMATION");
 
 
-
+       // viewPager.setOffscreenPageLimit(1);
         viewPager.setAdapter(adapter);
+
+
+//        Set the number of pages that should be retained to either side of the current page in the view
+//         hierarchy in an idle state. Pages beyond this limit will be recreated from the adapter when needed.
+
     }
 }
 class ViewPagerAdapterInPayment extends FragmentPagerAdapter {

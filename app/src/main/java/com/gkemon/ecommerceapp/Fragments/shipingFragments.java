@@ -30,17 +30,14 @@ public class shipingFragments extends Fragment implements RecyclerItemClickListe
 
     private View rootView;
     public RecyclerView recyclerViewForDelivery;
-    public FloatingActionButton btnAdd;
-    private Context context;
     public Typeface typeface;
-    public ItemsAdapter itemAdapter;
     public LinearLayoutManager linearLayoutManager;
     TextView textView1, textView2, textView3, textView4, textView5, textView6, textView7;
     public static ArrayList<String> price;
     public static ArrayList<String> method;
     public int imageResource[]={R.drawable.cycle,R.drawable.bike,R.drawable.truck,R.drawable.plan};
 
-    public ArrayList<DeliveryItems> deliveryItems;
+
 
 
     public shipingFragments() {
@@ -50,11 +47,46 @@ public class shipingFragments extends Fragment implements RecyclerItemClickListe
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+//        listitems = new ArrayList<>();
+//        price =new ArrayList<>();
+//        method =new ArrayList<>();
+//
+//        price.add("09$");
+//        price.add("19$");
+//        price.add("29$");
+//        price.add("39$");
+//
+//        method.add("REGULAR");
+//        method.add("MEDIUM");
+//        method.add("EXPRESS");
+//        method.add("OVER NIGHT");
+//        initializeList();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        price =new ArrayList<>();
+//        method =new ArrayList<>();
+//
+//        price.add("09$");
+//        price.add("19$");
+//        price.add("29$");
+//        price.add("39$");
+//
+//        method.add("REGULAR");
+//        method.add("MEDIUM");
+//        method.add("EXPRESS");
+//        method.add("OVER NIGHT");
+//        initializeList();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+
+
         price =new ArrayList<>();
         method =new ArrayList<>();
 
@@ -68,13 +100,6 @@ public class shipingFragments extends Fragment implements RecyclerItemClickListe
         method.add("EXPRESS");
         method.add("OVER NIGHT");
         initializeList();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-
 
 //        imageResource.add(R.drawable.cycle);
 //        imageResource.add(R.drawable.bike);
@@ -108,15 +133,13 @@ public class shipingFragments extends Fragment implements RecyclerItemClickListe
 
        // VIEWS
         recyclerViewForDelivery = (RecyclerView) rootView.findViewById(R.id.deliveryRecycler);
-
         linearLayoutManager = new LinearLayoutManager(getActivity());
-
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        DeliveryAdapter itemsAdapter = new DeliveryAdapter(listitems);
+        DeliveryAdapter deliveryAdapter = new DeliveryAdapter(listitems);
         recyclerViewForDelivery.setHasFixedSize(true);
 
        // itemsAdapter.setOnItemClickListener(this);
-        recyclerViewForDelivery.setAdapter(itemsAdapter);
+        recyclerViewForDelivery.setAdapter(deliveryAdapter);
         recyclerViewForDelivery.setLayoutManager(linearLayoutManager);
 
 
@@ -147,7 +170,6 @@ public class shipingFragments extends Fragment implements RecyclerItemClickListe
             Log.d("GK",String.valueOf(imageResource[i])+" "+price.get(i)+" "+method.get(i));
             listitems.add(item);
         }
-
     }
 
 

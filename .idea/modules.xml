@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://E:\HAZIRA KHATA REPOSITORY\Slider-Custom_button_Tab_layout_Card_views_Drawer_Menus\EcommerceApp.iml" filepath="E:\HAZIRA KHATA REPOSITORY\Slider-Custom_button_Tab_layout_Card_views_Drawer_Menus\EcommerceApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/Slider-Custom_button_Tab_layout_Card_views_Drawer_Menus.iml" filepath="$PROJECT_DIR$/.idea/Slider-Custom_button_Tab_layout_Card_views_Drawer_Menus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EcommerceApp.iml" filepath="$PROJECT_DIR$/EcommerceApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://E:\HAZIRA KHATA REPOSITORY\Slider-Custom_button_Tab_layout_Card_views_Drawer_Menus\app\app.iml" filepath="E:\HAZIRA KHATA REPOSITORY\Slider-Custom_button_Tab_layout_Card_views_Drawer_Menus\app\app.iml" />
     </modules>
   </component>
 </project>
