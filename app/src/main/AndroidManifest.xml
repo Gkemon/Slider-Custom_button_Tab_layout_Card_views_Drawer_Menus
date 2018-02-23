@@ -17,8 +17,7 @@
         <activity
             android:name=".Activity.OverViewActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Activity.WelcomeActivity"
             android:label="@string/app_name"
@@ -29,16 +28,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Activity.paymentActivity"
-            android:label="@string/title_activity_payment">
-        </activity>
+            android:label="@string/title_activity_payment"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
+        <activity
+            android:name=".Activity.CollectionActivity"
+            android:label="@string/title_activity_collection"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
