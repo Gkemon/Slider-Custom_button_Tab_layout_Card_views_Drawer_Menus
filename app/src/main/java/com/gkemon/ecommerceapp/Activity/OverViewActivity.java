@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -22,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gkemon.ecommerceapp.Adapers.ItemsAdapter;
+import com.gkemon.ecommerceapp.Listener.RecyclerItemClickListener;
 import com.gkemon.ecommerceapp.R;
 
 import java.util.Locale;
@@ -30,7 +34,7 @@ import java.util.Locale;
  * Created by uy on 2/13/2018.
  */
 
-public class OverViewActivity extends AppCompatActivity {
+public class OverViewActivity extends AppCompatActivity implements RecyclerItemClickListener {
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
     private LinearLayout dotsLayout;
@@ -38,6 +42,13 @@ public class OverViewActivity extends AppCompatActivity {
     private int[] layouts;
     public Typeface typeface;
     public Context context;
+
+    //recycle
+    public RecyclerView recyclerViewForItems;
+    public ItemsAdapter itemAdapter;
+    public GridLayoutManager gridLayoutManager;
+
+
     private AlphaAnimation alphaAnimation;
     //private PrefManager prefManager;
     //FaceBook
@@ -58,6 +69,8 @@ public class OverViewActivity extends AppCompatActivity {
 //            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 //        }
 
+
+
         //HIDING NOTIFICATION BAR
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -66,6 +79,17 @@ public class OverViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //recycler
+        recyclerViewForItems=findViewById(R.id.recycleViewForItems);
+        gridLayoutManager = new GridLayoutManager(context,2);
+        recyclerViewForItems.setLayoutManager(gridLayoutManager);
+        itemAdapter = new ItemsAdapter(this);
+        itemAdapter.setOnItemClickListener(this);
+        //SET ADAPTER
+        itemAdapter.addAll(MainActivity.itemsArrayList);
+        recyclerViewForItems.setAdapter(itemAdapter);
+
 
         //For hide and show description (Extendable view)
         pluse1=(ImageView)findViewById(R.id.plus1);
@@ -327,6 +351,18 @@ public class OverViewActivity extends AppCompatActivity {
             View view = (View) object;
             container.removeView(view);
         }
+
+    }
+    @Override
+    public void onItemClick(int position, View view) {
+
+//        Intent i = new Intent(getActivity(),OverViewActivity.class);
+//        startActivity(i);
+
+    }
+
+    @Override
+    public void onItemLongPressed(int position, View view) {
 
     }
 

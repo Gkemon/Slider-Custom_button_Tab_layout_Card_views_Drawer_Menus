@@ -1,7 +1,9 @@
-package com.gkemon.ecommerceapp;
+package com.gkemon.ecommerceapp.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.gkemon.ecommerceapp.R;
 
 public class ZoomActivity extends AppCompatActivity {
 

@@ -21,9 +21,9 @@ import com.gkemon.ecommerceapp.R;
 
 public class WatchFragments extends Fragment implements RecyclerItemClickListener {
     private View rootView;
-    public  RecyclerView recyclerViewForClass;
     public FloatingActionButton btnAdd;
     private Context context;
+    public  RecyclerView recyclerViewForClass;
     public ItemsAdapter itemAdapter;
     public GridLayoutManager gridLayoutManager;
 
