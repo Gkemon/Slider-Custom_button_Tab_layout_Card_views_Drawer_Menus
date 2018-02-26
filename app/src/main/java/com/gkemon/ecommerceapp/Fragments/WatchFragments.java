@@ -1,6 +1,7 @@
 package com.gkemon.ecommerceapp.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gkemon.ecommerceapp.Activity.MainActivity;
+import com.gkemon.ecommerceapp.Activity.OverViewActivity;
 import com.gkemon.ecommerceapp.Adapers.ItemsAdapter;
 import com.gkemon.ecommerceapp.Listener.RecyclerItemClickListener;
 import com.gkemon.ecommerceapp.R;
@@ -66,6 +68,9 @@ public class WatchFragments extends Fragment implements RecyclerItemClickListene
 
     @Override
     public void onItemClick(int position, View view) {
+
+        Intent i = new Intent(getActivity(),OverViewActivity.class);
+        startActivity(i);
 
     }
 

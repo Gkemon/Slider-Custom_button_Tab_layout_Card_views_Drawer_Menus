@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,5 +8,90 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.gkemon.ecommerceapp.Activity.CollectionActivity"
     tools:showIn="@layout/app_bar_collection">
+<LinearLayout
+    android:id="@+id/watch"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitCenter"
+        android:background="@drawable/watch0"
+         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_margin="1dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/girl1"
+            android:scaleType="centerCrop"
+            android:layout_height="200dp"/>
+        <ImageView
+            android:layout_margin="1dp"
+
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/boy1"
+            android:scaleType="centerCrop"
+            android:layout_height="200dp"/>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitCenter"
+        android:background="@drawable/newbalance" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/darker_gray">
+
+        <TextView
+            android:gravity="center"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:fontFamily="@font/maven_pro"
+            android:text="HOME DECOR"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginBottom="0.5dp"/>
+
+        <TextView
+            android:gravity="center"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:fontFamily="@font/maven_pro"
+            android:text="KITCHEN and TABLE TOP"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginBottom="0.5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="0.5dp"
+            android:background="@android:color/white"
+            android:fontFamily="@font/maven_pro"
+            android:gravity="center"
+            android:text="ACCESSORIES"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="0.5dp"
+            android:background="@android:color/white"
+            android:fontFamily="@font/maven_pro"
+            android:gravity="center"
+            android:text="OFFICE"
+            android:textColor="@color/colorPrimary" />
+
+    </LinearLayout>
+</LinearLayout>
+
+</ScrollView>

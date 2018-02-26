@@ -1,6 +1,7 @@
 package com.gkemon.ecommerceapp.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -36,6 +37,7 @@ public class OverViewActivity extends AppCompatActivity {
     private TextView[] dots;
     private int[] layouts;
     public Typeface typeface;
+    public Context context;
     private AlphaAnimation alphaAnimation;
     //private PrefManager prefManager;
     //FaceBook
@@ -49,7 +51,7 @@ public class OverViewActivity extends AppCompatActivity {
 
         alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
         alphaAnimation.setDuration(1000);
-
+        context=this;
 
         // Making notification bar transparent
 //        if (Build.VERSION.SDK_INT >= 21) {
@@ -61,7 +63,7 @@ public class OverViewActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_Product_details);
+        setContentView(R.layout.activity_product_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -94,6 +96,15 @@ public class OverViewActivity extends AppCompatActivity {
         pluse1.setAnimation(alphaAnimation);
         pluse1.setAnimation(alphaAnimation);
         pluse1.setAnimation(alphaAnimation);
+
+        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        viewPager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context,ProductsViewActivity.class);
+                startActivity(i);
+            }
+        });
 
         //For using custom front
         AssetManager am = this.getApplicationContext().getAssets();
@@ -259,6 +270,7 @@ public class OverViewActivity extends AppCompatActivity {
         @Override
         public void onPageScrollStateChanged(int arg0) {
         }
+
     };
 
     /**
@@ -287,6 +299,14 @@ public class OverViewActivity extends AppCompatActivity {
 
             View view = layoutInflater.inflate(layouts[position], container, false);
             container.addView(view);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context,ProductsViewActivity.class);
+                    startActivity(i);
+                }
+            });
 
             return view;
         }

@@ -92,7 +92,7 @@ public class WelcomeActivity  extends AppCompatActivity {
 //                } else {
 //                    launchHomeScreen();
 //                }
-                Intent i=new Intent(WelcomeActivity.this,MainActivity.class);
+                Intent i=new Intent(WelcomeActivity.this,CollectionActivity.class);
                 startActivity(i);
 
             }
