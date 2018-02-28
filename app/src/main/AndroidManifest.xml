@@ -41,8 +41,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.ProductsViewActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Activity.ZoomActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.ZoomActivity" />
+        <activity android:name=".Activity.CartActivity"></activity>
     </application>
 
 </manifest>

@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_layout"
+    android:focusable="true"
     android:background="@android:color/white">
 
 
@@ -14,6 +16,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
+
             <LinearLayout
                 android:baselineAligned="false"
                 android:layout_width="match_parent"
@@ -21,6 +24,7 @@
                 android:orientation="horizontal"
                 >
                 <LinearLayout
+                    android:id="@+id/backPress"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_gravity="start"
@@ -35,6 +39,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/cartLayout"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_marginRight="10dp"
@@ -48,14 +53,24 @@
                         android:src="@drawable/heart"
                         />
                     <ImageView
-                        android:layout_margin="10dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_margin="5dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@drawable/cart"
+                        />
+                    <TextView
+                        android:id="@+id/cartItemCountNumber"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text=""
+                        android:gravity="center"
+                        android:textColor="@android:color/white"
+                        android:background="@drawable/text_ring_red"
                         />
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_below="@+id/toolbar"
@@ -173,10 +188,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="clip_vertical"
                     android:fontFamily="@font/maven_pro"
-                    android:gravity="start"
-                    android:padding="18sp"
+                    android:gravity="start" android:paddingBottom="18sp"
                     android:paddingLeft="18sp"
-                    android:paddingTop="12sp"
+                    android:paddingRight="18sp"
                     android:text="SIZE"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp" />
@@ -185,7 +199,10 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginLeft="17dp"
-                    android:padding="18sp">
+                    android:paddingBottom="18sp"
+                    android:paddingLeft="18sp"
+                    android:paddingRight="18sp"
+                    >
 
                     <TextView
                         android:layout_width="30dp"
@@ -464,18 +481,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </android.support.v7.widget.RecyclerView>
-
-
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
         android:clickable="true"
         android:focusable="true"
         app:fabSize="normal"

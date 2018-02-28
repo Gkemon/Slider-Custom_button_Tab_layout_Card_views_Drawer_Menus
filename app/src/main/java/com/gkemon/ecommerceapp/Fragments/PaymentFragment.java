@@ -17,6 +17,7 @@ import com.gkemon.ecommerceapp.R;
 
 import java.util.ArrayList;
 
+import static com.gkemon.ecommerceapp.Activity.paymentActivity.viewPager;
 import static com.gkemon.ecommerceapp.Fragments.shipingFragments.listitems;
 
 public class PaymentFragment extends Fragment {
@@ -28,7 +29,7 @@ public class PaymentFragment extends Fragment {
 
     public static ArrayList<String> methodOfPayment;
     public int imageResourceOfPayment[]={R.drawable.paypal,R.drawable.visa,R.drawable.netbanking,R.drawable.payu};
-
+    View continueToConfirmation;
 
     public PaymentFragment() {
         // Required empty public constructor
@@ -64,7 +65,15 @@ public class PaymentFragment extends Fragment {
         recyclerViewForClass.setAdapter(itemsAdapter);
         recyclerViewForClass.setLayoutManager(linearLayoutManager);
 
+        //CONTINUE ORDER
 
+        continueToConfirmation = rootView.findViewById(R.id.continueToConfirmation);
+        continueToConfirmation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(2);
+            }
+        });
 
         return rootView;
     }

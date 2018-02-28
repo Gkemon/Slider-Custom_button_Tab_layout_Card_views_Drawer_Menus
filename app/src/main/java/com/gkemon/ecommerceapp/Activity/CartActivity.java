@@ -1,30 +1,24 @@
-package com.gkemon.ecommerceapp.Fragments;
+package com.gkemon.ecommerceapp.Activity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.gkemon.ecommerceapp.Adapers.ConfirmAdapter;
 import com.gkemon.ecommerceapp.Model.ConfirmItem;
-import com.gkemon.ecommerceapp.Model.DeliveryItems;
-import com.gkemon.ecommerceapp.Model.PaymentItems;
 import com.gkemon.ecommerceapp.R;
 
 import java.util.ArrayList;
 
 import static com.gkemon.ecommerceapp.Fragments.shipingFragments.listitems;
 
-public class ConfirmFragment extends Fragment {
+public class CartActivity extends AppCompatActivity {
 
     public static ArrayList<ConfirmItem> ConfirmItemList = new ArrayList<>();
-
-    private View rootView;
-
     public RecyclerView recyclerViewForClass;
     public LinearLayoutManager linearLayoutManager;
     public int imageResourceOfConfirmItems[]={R.drawable.box,R.drawable.ball,R.drawable.bag,R.drawable.box,R.drawable.ball};
@@ -32,18 +26,13 @@ public class ConfirmFragment extends Fragment {
     public ArrayList<String> SizeList;
     public ArrayList<Double> ProductPricesList;
     public ArrayList<Integer> ProductQuantityList;
-
-
-    public ConfirmFragment() {
-        // Required empty public constructor
-    }
-
-
+    public View ButtonGoToPayMentActivity;
+    public Context context;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_cart);
         ProductNameList=new ArrayList<>();
         SizeList=new ArrayList<>();
         ProductPricesList=new ArrayList<>();
@@ -67,27 +56,27 @@ public class ConfirmFragment extends Fragment {
         ProductPricesList.add(320.00);
         ProductPricesList.add(220.00);
         ProductPricesList.add(49.00);
-
+        context=this;
         initializeList();
 
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-        rootView = inflater.inflate(R.layout.fragment_confirm, container, false);
-        recyclerViewForClass=rootView.findViewById(R.id.confirm_item_recycler);
-        linearLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerViewForClass=findViewById(R.id.confirm_item_recycler);
+        linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         ConfirmAdapter itemsAdapter = new ConfirmAdapter(ConfirmItemList);
         recyclerViewForClass.setHasFixedSize(true);
         recyclerViewForClass.setAdapter(itemsAdapter);
         recyclerViewForClass.setLayoutManager(linearLayoutManager);
+        ButtonGoToPayMentActivity=findViewById(R.id.ButtonGoToPayMentActivity);
+        ButtonGoToPayMentActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,paymentActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+            }
+        });
 
 
-        return rootView;
     }
 
     public void initializeList() {
@@ -99,6 +88,10 @@ public class ConfirmFragment extends Fragment {
 
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+    }
 }
+

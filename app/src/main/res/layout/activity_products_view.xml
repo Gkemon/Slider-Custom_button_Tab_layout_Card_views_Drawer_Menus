@@ -23,6 +23,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_gravity="start"
+            android:id="@+id/backPress"
             android:gravity="center|start"
             android:layout_height="match_parent">
             <ImageView

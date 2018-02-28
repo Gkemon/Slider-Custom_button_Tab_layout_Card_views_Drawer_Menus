@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -24,10 +25,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.balysv.materialripple.MaterialRippleLayout;
 import com.gkemon.ecommerceapp.Adapers.ItemsAdapter;
 import com.gkemon.ecommerceapp.Listener.RecyclerItemClickListener;
 import com.gkemon.ecommerceapp.R;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 /**
@@ -47,6 +50,9 @@ public class OverViewActivity extends AppCompatActivity implements RecyclerItemC
     public RecyclerView recyclerViewForItems;
     public ItemsAdapter itemAdapter;
     public GridLayoutManager gridLayoutManager;
+    public View mainlayout,Back;
+    public TextView cartCounter;
+
 
 
     private AlphaAnimation alphaAnimation;
@@ -54,14 +60,16 @@ public class OverViewActivity extends AppCompatActivity implements RecyclerItemC
     //FaceBook
     ImageView pluse1,pluse2,pluse3,minus1,minus2,minus3;
     TextView description1,description2,description3;
-
+    FloatingActionButton FABforCart;
+    View cartLayout;
+    public static ArrayList<Integer> cartCounterArrayList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
-        alphaAnimation.setDuration(1000);
+        alphaAnimation.setDuration(100);
         context=this;
 
         // Making notification bar transparent
@@ -80,6 +88,38 @@ public class OverViewActivity extends AppCompatActivity implements RecyclerItemC
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //CART
+        FABforCart =findViewById(R.id.cart);
+        cartLayout=findViewById(R.id.cartLayout);
+        cartLayout.setAnimation(alphaAnimation);
+        mainlayout=findViewById(R.id.main_layout);
+        cartCounter=findViewById(R.id.cartItemCountNumber);
+
+        if(cartCounterArrayList.size()==0)cartCounter.setVisibility(View.GONE);
+        cartCounter.setText(String.valueOf(cartCounterArrayList.size()));
+
+        FABforCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cartCounterArrayList.add(1);
+                cartCounter.setVisibility(View.VISIBLE);
+                cartCounter.setText(String.valueOf(cartCounterArrayList.size()));
+
+            }
+        });
+
+        cartCounter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cartCounter.setVisibility(View.GONE);
+                cartCounterArrayList.clear();
+                Intent intent = new Intent(context,CartActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+            }
+        });
+
+
         //recycler
         recyclerViewForItems=findViewById(R.id.recycleViewForItems);
         gridLayoutManager = new GridLayoutManager(context,2);
@@ -90,6 +130,14 @@ public class OverViewActivity extends AppCompatActivity implements RecyclerItemC
         itemAdapter.addAll(MainActivity.itemsArrayList);
         recyclerViewForItems.setAdapter(itemAdapter);
 
+        //BACK
+        Back=findViewById(R.id.backPress);
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         //For hide and show description (Extendable view)
         pluse1=(ImageView)findViewById(R.id.plus1);
@@ -104,11 +152,11 @@ public class OverViewActivity extends AppCompatActivity implements RecyclerItemC
         description2=(TextView) findViewById(R.id.description2);
         description3=(TextView) findViewById(R.id.description3);
 
-        description1.setVisibility(View.GONE);
+        description1.setVisibility(View.VISIBLE);
         description2.setVisibility(View.GONE);
         description3.setVisibility(View.GONE);
 
-        minus1.setVisibility(View.GONE);
+        minus1.setVisibility(View.VISIBLE);
         minus2.setVisibility(View.GONE);
         minus3.setVisibility(View.GONE);
 
@@ -117,6 +165,7 @@ public class OverViewActivity extends AppCompatActivity implements RecyclerItemC
         minus2.setAnimation(alphaAnimation);
         minus3.setAnimation(alphaAnimation);
 
+        pluse1.setVisibility(View.GONE);
         pluse1.setAnimation(alphaAnimation);
         pluse1.setAnimation(alphaAnimation);
         pluse1.setAnimation(alphaAnimation);
@@ -364,6 +413,12 @@ public class OverViewActivity extends AppCompatActivity implements RecyclerItemC
     @Override
     public void onItemLongPressed(int position, View view) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
     }
 
 }

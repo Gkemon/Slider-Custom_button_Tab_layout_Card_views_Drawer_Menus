@@ -29,7 +29,7 @@ public class paymentActivity extends AppCompatActivity {
 
 
     private TabLayout tabLayout;
-    private ViewPager viewPager;
+    public static ViewPager viewPager;
     LinearLayout linearLayout;
     public Typeface typeface;
     Context context;
@@ -74,6 +74,13 @@ public class paymentActivity extends AppCompatActivity {
 
 
 
+
+
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
     }
     public void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapterInPayment adapter = new ViewPagerAdapterInPayment(getSupportFragmentManager());

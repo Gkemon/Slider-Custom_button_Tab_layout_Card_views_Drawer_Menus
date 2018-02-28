@@ -24,6 +24,8 @@ import com.gkemon.ecommerceapp.R;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import static com.gkemon.ecommerceapp.Activity.paymentActivity.viewPager;
+
 
 public class shipingFragments extends Fragment implements RecyclerItemClickListener {
    public static ArrayList<DeliveryItems> listitems = new ArrayList<>();
@@ -36,6 +38,7 @@ public class shipingFragments extends Fragment implements RecyclerItemClickListe
     public static ArrayList<String> price;
     public static ArrayList<String> method;
     public int imageResource[]={R.drawable.cycle,R.drawable.bike,R.drawable.truck,R.drawable.plan};
+    View continue_order;
 
 
 
@@ -111,6 +114,16 @@ public class shipingFragments extends Fragment implements RecyclerItemClickListe
 
         rootView = inflater.inflate(R.layout.shiping_fragment_payment, container, false);
 
+        //CONTINUE ORDER
+
+        continue_order = rootView.findViewById(R.id.continue_order);
+        continue_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(1);
+            }
+        });
+
         textView1 = (TextView) rootView.findViewById(R.id.t1);
         textView2 = (TextView) rootView.findViewById(R.id.t2);
         textView3 = (TextView) rootView.findViewById(R.id.t3);
@@ -118,6 +131,7 @@ public class shipingFragments extends Fragment implements RecyclerItemClickListe
         textView5 = (TextView) rootView.findViewById(R.id.t6);
         textView6 = (TextView) rootView.findViewById(R.id.t7);
         textView7 = (TextView) rootView.findViewById(R.id.t8);
+//front
 
         AssetManager am = getActivity().getAssets();
         typeface = Typeface.createFromAsset(am,
