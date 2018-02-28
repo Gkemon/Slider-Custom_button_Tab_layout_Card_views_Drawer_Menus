@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import com.gkemon.ecommerceapp.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by uy on 12/1/2017.
  */
@@ -34,7 +36,7 @@ public class WelcomeActivity  extends AppCompatActivity {
     //private PrefManager prefManager;
     //FaceBook
 
-
+    public static ArrayList<Integer> cartCounterArrayList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +50,19 @@ public class WelcomeActivity  extends AppCompatActivity {
 //            finish();
 //        }
 
+        //HIDING NOTIFICATION BAR
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        setContentView(R.layout.activity_welcome);
+
+
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
 
-        setContentView(R.layout.activity_welcome);
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
@@ -94,6 +103,7 @@ public class WelcomeActivity  extends AppCompatActivity {
 //                }
                 Intent i=new Intent(WelcomeActivity.this,CollectionActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
 
             }
         });

@@ -29,7 +29,8 @@
         </activity>
         <activity
             android:name=".Activity.paymentActivity"
-            android:label="@string/title_activity_payment" />
+            android:label="@string/title_activity_payment"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <meta-data
             android:name="preloaded_fonts"
@@ -43,7 +44,9 @@
             android:name=".Activity.ProductsViewActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.ZoomActivity" />
-        <activity android:name=".Activity.CartActivity"></activity>
+        <activity android:name=".Activity.CartActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

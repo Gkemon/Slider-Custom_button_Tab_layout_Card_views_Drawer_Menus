@@ -1,5 +1,6 @@
 package com.gkemon.ecommerceapp.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,8 +14,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.gkemon.ecommerceapp.CustomView.CustomCardsForItem;
 import com.gkemon.ecommerceapp.Fragments.WatchFragments;
@@ -24,12 +30,18 @@ import com.gkemon.ecommerceapp.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.gkemon.ecommerceapp.Activity.WelcomeActivity.cartCounterArrayList;
+
 //TODO: Use Toolbar in Appbarlayout because this Appbarlayout for Toolbar and others Upper UI elements to
 // organize them vertically in the top side of an app
 
 //TODO: Import Drawable from outside of android studio.Not Inside of android studio
 
 //TODO: "There is no default constructor available in 'android.support.v7.widget.card" in custom view' that means uou have to call super class .see 'CustomCardsForItem.java' 14th line;
+
+
+//TODO: Toolbar will not sync with activiy changed so we have to call toolbar and set in on onStartMethod
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,14 +51,25 @@ public class MainActivity extends AppCompatActivity
     private Items i1,i2,i3,i6,i4,i5,i7;
     private CustomCardsForItem customCardsForItem;
     public static ArrayList<Items> itemsArrayList;
+    public TextView cartCounter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        //HIDING NOTIFICATION BAR
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         customCardsForItem=new CustomCardsForItem(this);
 
@@ -100,8 +123,6 @@ public class MainActivity extends AppCompatActivity
         itemsArrayList.add(i5);
 
 
-
-
         //Tabs
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -119,6 +140,7 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
         }
 
     }
@@ -138,11 +160,42 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.cartID) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Log.d("GK","onstart of main activity" +String.valueOf(cartCounterArrayList.size()) );
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //Cart
+        final Context context;
+        context=this;
+
+
+        cartCounter=findViewById(R.id.cartItemCountNumber);
+
+        if(cartCounterArrayList.size()==0)cartCounter.setVisibility(View.GONE);
+        else cartCounter.setVisibility(View.VISIBLE);
+        cartCounter.setText(String.valueOf(cartCounterArrayList.size()));
+
+        cartCounter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cartCounter.setVisibility(View.GONE);
+                cartCounterArrayList.clear();
+                Intent intent = new Intent(context,CartActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+            }
+        });
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -181,6 +234,7 @@ public class MainActivity extends AppCompatActivity
         adapter.addFrag(new WatchFragments(), "সকল পণ্য");
         viewPager.setAdapter(adapter);
     }
+
 }
 class ViewPagerAdapter extends FragmentPagerAdapter {
     private final List<Fragment> mFragmentList = new ArrayList<>();

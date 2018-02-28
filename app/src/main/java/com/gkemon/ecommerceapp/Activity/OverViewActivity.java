@@ -33,18 +33,20 @@ import com.gkemon.ecommerceapp.R;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import static com.gkemon.ecommerceapp.Activity.WelcomeActivity.cartCounterArrayList;
+
 /**
  * Created by uy on 2/13/2018.
  */
 
 public class OverViewActivity extends AppCompatActivity implements RecyclerItemClickListener {
     private ViewPager viewPager;
-    private MyViewPagerAdapter myViewPagerAdapter;
+    public MyViewPagerAdapter myViewPagerAdapter;
     private LinearLayout dotsLayout;
     private TextView[] dots;
-    private int[] layouts;
+    public static int[] layouts;
     public Typeface typeface;
-    public Context context;
+    public static Context context;
 
     //recycle
     public RecyclerView recyclerViewForItems;
@@ -62,51 +64,19 @@ public class OverViewActivity extends AppCompatActivity implements RecyclerItemC
     TextView description1,description2,description3;
     FloatingActionButton FABforCart;
     View cartLayout;
-    public static ArrayList<Integer> cartCounterArrayList=new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
-        alphaAnimation.setDuration(100);
+    protected void onStart() {
+        super.onStart();
+        //Cart
+        final Context context;
         context=this;
 
-        // Making notification bar transparent
-//        if (Build.VERSION.SDK_INT >= 21) {
-//            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-//        }
 
-
-
-        //HIDING NOTIFICATION BAR
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        setContentView(R.layout.activity_product_details);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        //CART
-        FABforCart =findViewById(R.id.cart);
-        cartLayout=findViewById(R.id.cartLayout);
-        cartLayout.setAnimation(alphaAnimation);
-        mainlayout=findViewById(R.id.main_layout);
         cartCounter=findViewById(R.id.cartItemCountNumber);
 
         if(cartCounterArrayList.size()==0)cartCounter.setVisibility(View.GONE);
         cartCounter.setText(String.valueOf(cartCounterArrayList.size()));
-
-        FABforCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cartCounterArrayList.add(1);
-                cartCounter.setVisibility(View.VISIBLE);
-                cartCounter.setText(String.valueOf(cartCounterArrayList.size()));
-
-            }
-        });
 
         cartCounter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +88,68 @@ public class OverViewActivity extends AppCompatActivity implements RecyclerItemC
                 overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             }
         });
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+        //HIDING NOTIFICATION BAR
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+        alphaAnimation.setDuration(100);
+        context=this;
+
+        // Making notification bar transparent
+//        if (Build.VERSION.SDK_INT >= 21) {
+//            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+//        }
+
+        setContentView(R.layout.activity_product_details);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+
+
+        //CART
+        FABforCart =findViewById(R.id.cart);
+        cartLayout=findViewById(R.id.cartLayout);
+        cartLayout.setAnimation(alphaAnimation);
+        mainlayout=findViewById(R.id.main_layout);
+        cartCounter=findViewById(R.id.cartItemCountNumber);
+
+        if(cartCounterArrayList.size()==0)cartCounter.setVisibility(View.GONE);
+        cartCounter.setText(String.valueOf(cartCounterArrayList.size()));
+
+        cartCounter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cartCounter.setVisibility(View.GONE);
+                cartCounterArrayList.clear();
+                Intent intent = new Intent(context,CartActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+            }
+        });
+
+
+        FABforCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cartCounterArrayList.add(1);
+                cartCounter.setVisibility(View.VISIBLE);
+                cartCounter.setText(String.valueOf(cartCounterArrayList.size()));
+
+            }
+        });
+
+
 
 
         //recycler
@@ -176,6 +208,7 @@ public class OverViewActivity extends AppCompatActivity implements RecyclerItemC
             public void onClick(View v) {
                 Intent i = new Intent(context,ProductsViewActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             }
         });
 
@@ -361,7 +394,7 @@ public class OverViewActivity extends AppCompatActivity implements RecyclerItemC
      * View pager adapter
      */
     public class MyViewPagerAdapter extends PagerAdapter {
-        private LayoutInflater layoutInflater;
+        public LayoutInflater layoutInflater;
 
         public MyViewPagerAdapter() {
         }
@@ -369,8 +402,10 @@ public class OverViewActivity extends AppCompatActivity implements RecyclerItemC
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view =null;
+           // view=(View) View.inflate(context,layouts[position],container);
+            view =(View)layoutInflater.inflate(layouts[position], container, false);
 
-            View view = layoutInflater.inflate(layouts[position], container, false);
             container.addView(view);
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -378,6 +413,7 @@ public class OverViewActivity extends AppCompatActivity implements RecyclerItemC
                 public void onClick(View v) {
                     Intent i = new Intent(context,ProductsViewActivity.class);
                     startActivity(i);
+                    overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
                 }
             });
 

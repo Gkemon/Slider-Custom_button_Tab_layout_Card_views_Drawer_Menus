@@ -3,9 +3,4 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Activity.MainActivity">
-    <item
-        android:id="@+id/cartID"
-        android:icon="@drawable/ic_cart"
-        android:title="Cart"
-        app:showAsAction="always" />
 </menu>

@@ -1,6 +1,7 @@
 package com.gkemon.ecommerceapp.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,6 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static com.gkemon.ecommerceapp.Activity.WelcomeActivity.cartCounterArrayList;
+
 public class paymentActivity extends AppCompatActivity {
 
 
@@ -32,13 +37,20 @@ public class paymentActivity extends AppCompatActivity {
     public static ViewPager viewPager;
     LinearLayout linearLayout;
     public Typeface typeface;
-    Context context;
+    public TextView cartCounter;
+    Context context1;
     TextView textView1,textView2,textView3,textView4,textView5,textView6,textView7;
     private Items i1,i2,i3,i6,i4,i5,i7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //HIDING NOTIFICATION BAR
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_payment);
 
 //        textView1=(TextView) findViewById(R.id.t1);
@@ -69,7 +81,7 @@ public class paymentActivity extends AppCompatActivity {
 
         setupViewPager(viewPager);
 
-        context=this;
+        context1=this;
         //For using custom front
 
 

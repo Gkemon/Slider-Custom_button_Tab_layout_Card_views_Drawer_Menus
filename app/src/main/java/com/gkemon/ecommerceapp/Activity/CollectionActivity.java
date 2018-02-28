@@ -9,31 +9,99 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.gkemon.ecommerceapp.R;
+
+import static com.gkemon.ecommerceapp.Activity.WelcomeActivity.cartCounterArrayList;
 
 public class CollectionActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public View watch;
     public Context context;
+    public TextView cartCounter;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Log.d("GK","onstart of main activity" +String.valueOf(cartCounterArrayList.size()) );
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarInCollection);
+        setSupportActionBar(toolbar);
+
+        //Cart
+        final Context context;
+        context=this;
+
+
+        cartCounter=findViewById(R.id.cartItemCountNumber);
+
+        if(cartCounterArrayList.size()==0)cartCounter.setVisibility(View.GONE);
+        else cartCounter.setVisibility(View.VISIBLE);
+        cartCounter.setText(String.valueOf(cartCounterArrayList.size()));
+
+        cartCounter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cartCounter.setVisibility(View.GONE);
+                cartCounterArrayList.clear();
+                Intent intent = new Intent(context,CartActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+            }
+        });
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context=this;
+
+        //HIDING NOTIFICATION BAR
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
         setContentView(R.layout.activity_collection);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarInCollection);
         setSupportActionBar(toolbar);
 
+
+        cartCounter=findViewById(R.id.cartItemCountNumber);
+
+        if(cartCounterArrayList.size()==0)cartCounter.setVisibility(View.GONE);
+        cartCounter.setText(String.valueOf(cartCounterArrayList.size()));
+
+        cartCounter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cartCounter.setVisibility(View.GONE);
+                cartCounterArrayList.clear();
+                Intent intent = new Intent(context,CartActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+            }
+        });
+
+
         watch=findViewById(R.id.watch);
-        context=this;
+
         watch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context,MainActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             }
         });
 
@@ -55,6 +123,8 @@ public class CollectionActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+
         }
     }
 
@@ -104,4 +174,5 @@ public class CollectionActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

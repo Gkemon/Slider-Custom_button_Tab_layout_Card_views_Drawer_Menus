@@ -71,6 +71,7 @@ public class WatchFragments extends Fragment implements RecyclerItemClickListene
 
         Intent i = new Intent(getActivity(),OverViewActivity.class);
         startActivity(i);
+        getActivity().overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
 
     }
 

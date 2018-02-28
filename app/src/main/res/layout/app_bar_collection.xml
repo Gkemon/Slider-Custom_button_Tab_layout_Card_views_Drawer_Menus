@@ -38,10 +38,19 @@
                     android:gravity="center|end"
                     android:layout_height="match_parent">
                     <ImageView
-                        android:layout_margin="10dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_margin="5dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@drawable/cart"
+                        />
+                    <TextView
+                        android:id="@+id/cartItemCountNumber"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text=""
+                        android:gravity="center"
+                        android:textColor="@android:color/white"
+                        android:background="@drawable/text_ring_red"
                         />
                 </LinearLayout>
             </LinearLayout>
